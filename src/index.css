@@ -1,0 +1,276 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+/* Variables de colores */
+:root {
+  --first-color: #003566;
+  --first-alpha-color: rgba(57, 105, 149, 0.733);
+
+  --second-color: rgb(0, 29, 61);
+  --second-alpha-color: rgba(0, 29, 61, 0.203);
+
+  --third-color: rgb(255, 214, 10);
+  --third-alpha-color: rgba(255, 214, 10, .75);
+
+  --link-color: rgb(255, 195, 0);
+  --link-alpha-color: rgba(255, 195, 0, .9);
+
+  --suplement-color: rgb(198, 65, 145);
+  --suplement-alpha-color: rgba(198, 65, 145, 0.50);
+}
+
+/*Main components */
+
+.header {
+  background-color: var(--first-color);
+}
+
+.promt-area {
+  background-color: var(--first-color);
+}
+
+
+button:hover {
+  box-shadow: 2px 4px 10px black;
+}
+button:active {
+  box-shadow: 2px 4px 10px black;
+  background-color: var(--first-alpha-color) !important;
+}
+
+.text-area {
+  color: white;
+  background-color: var(--first-alpha-color) !important;
+  border: var(--first-color);
+  box-shadow: 0 0 0 0.2rem var(--first-color);
+}
+
+/* switch */
+.switch {
+  --circle-dim: 1.4rem;
+  font-size: 17;
+  position: relative;
+  display: inline-block;
+  width: 3.5rem;
+  height: 2rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--second-alpha-color);
+  transition: .4s;
+  border-radius: 30rem;
+}
+
+.slider-card {
+  position: absolute;
+  content: "";
+  height: var(--circle-dim);
+  width: var(--circle-dim);
+  border-radius: 20rem;
+  left: 0.3em;
+  bottom: 0.3em;
+  transition: .4s;
+  pointer-events: none;
+}
+
+.slider-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  border-radius: 50%;
+  transition: .4s transform;
+}
+
+.slider-card-front {
+  background-color: white;
+}
+
+.slider-card-back {
+  background-color: white;
+  transform: rotateY(180deg);
+}
+
+input:checked ~ .slider-card .slider-card-back {
+  transform: rotateY(0);
+}
+
+input:checked ~ .slider-card .slider-card-front {
+  transform: rotateY(-180deg);
+}
+
+input:checked ~ .slider-card {
+  transform: translateX(1.5em);
+}
+
+input:checked ~ .slider {
+  background-color: var(--link-alpha-color);
+}
+
+
+/* Loader */
+.wave-menu {
+  border: 4px solid #545FE5;
+  border-radius: 50px;
+  width: 300px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: ease 0.2s;
+  position: relative;
+  background: #fff;
+}
+
+.wave-menu li {
+  list-style: none;
+  height: 30px;
+  width: 4px;
+  border-radius: 10px;
+  background: #545FE5;
+  margin: 0 6px;
+  padding: 0;
+  animation-name: wave1;
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition: ease 0.2s;
+}
+
+.wave-menu:hover > li {
+  background: #fff;
+}
+
+.wave-menu:hover {
+  background: #545FE5;
+}
+
+.wave-menu li:nth-child(2) {
+  animation-name: wave2;
+  animation-delay: 0.2s;
+}
+
+.wave-menu li:nth-child(3) {
+  animation-name: wave3;
+  animation-delay: 0.23s;
+  animation-duration: 0.4s;
+}
+
+.wave-menu li:nth-child(4) {
+  animation-name: wave4;
+  animation-delay: 0.1s;
+  animation-duration: 0.3s;
+}
+
+.wave-menu li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.wave-menu li:nth-child(6) {
+  animation-name: wave2;
+  animation-duration: 0.5s;
+}
+
+.wave-menu li:nth-child(8) {
+  animation-name: wave4;
+  animation-delay: 0.4s;
+  animation-duration: 0.25s;
+}
+
+.wave-menu li:nth-child(9) {
+  animation-name: wave3;
+  animation-delay: 0.15s;
+}
+
+.wave-menu li:nth-child(10) {
+  animation-name: wave4;
+  animation-delay: 0.9s;
+  animation-duration: 0.4s;
+}
+
+@keyframes wave1 {
+  from {
+    transform: scaleY(1);
+  }
+
+  to {
+    transform: scaleY(0.5);
+  }
+}
+
+@keyframes wave2 {
+  from {
+    transform: scaleY(0.3);
+  }
+
+  to {
+    transform: scaleY(0.6);
+  }
+}
+
+@keyframes wave3 {
+  from {
+    transform: scaleY(0.6);
+  }
+
+  to {
+    transform: scaleY(0.8);
+  }
+}
+
+@keyframes wave4 {
+  from {
+    transform: scaleY(0.2);
+  }
+
+  to {
+    transform: scaleY(0.5);
+  }
+}
+
+/* Scroll-bar */
+.vertical-scroll::-webkit-scrollbar {
+  width: .6em;
+  height: 2em;
+}
+
+.vertical-scroll:hover::-webkit-scrollbar {
+  width: .6em;
+  height: 2em;
+}
+
+.vertical-scroll::-webkit-scrollbar-track {
+  border-radius: 100vw;
+  margin-block: 0.2em;
+}
+
+.vertical-scroll::-webkit-scrollbar-thumb {
+  background: white;
+  border: 0.2em solid white;
+  border-radius: 100vw;
+}
+
+.vertical-scroll:hover::-webkit-scrollbar-thumb {
+  background: var(--first-color);
+  border: 0.2em solid var(--first-color);
+  border-radius: 100vw;
+}
