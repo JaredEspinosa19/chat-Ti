@@ -13,6 +13,31 @@ export const useChatStore = () => {
   const {chatList, isSending} = useSelector(state => state.chat)
   const dispatch = useDispatch();
 
+  const firstInteraction = async() => {
+    dispatch(sendingMessage());
+
+    try {
+      
+      const {data} = await rasaChatbotApi.post('/getTextResponse', { message: 'presentate por primera vez' });
+      
+      dispatch(deleteMessage());
+
+      dispatch(addMessage({
+        user: 'bot',
+        type: 'text',
+        isLoader: false,
+        message: data.respuesta,
+      }));
+      
+    } catch (error) {
+      console.log(error);
+      dispatch(deleteMessage());
+      window.Error('Ocurrio un error con su petición');
+    }
+
+    dispatch(messageSent());
+  }
+
   const sendTextToText = async({message}) => {
 
     dispatch(sendingMessage());
@@ -105,6 +130,7 @@ export const useChatStore = () => {
     chatList, 
     isSending,
 
+    firstInteraction,
     sendTextToText,
     sendTextToAudio,
   }

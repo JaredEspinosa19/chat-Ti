@@ -1,9 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ConversationList, Header, Prompt } from "../components"
+import { useChatStore } from "../hooks"
 
 
 export const ChatPage = () => {
 
+  const {firstInteraction} = useChatStore()
+
+  useEffect(() => {
+    firstInteraction();
+  }, [])
+  
 
   return (
     <>

@@ -3,6 +3,10 @@ html, body {
   padding: 0;
   height: 100%;
 }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
 /* Variables de colores */
 :root {
   --first-color: #003566;
@@ -45,6 +49,24 @@ button:active {
   background-color: var(--first-alpha-color) !important;
   border: var(--first-color);
   box-shadow: 0 0 0 0.2rem var(--first-color);
+}
+
+.text-area::placeholder {
+  color: rgba(255, 255, 255, 0.628); 
+}
+
+.text-area:focus{
+   box-shadow: 0 0 0 0.2rem var(--first-color)
+}
+
+
+
+.card {
+  border: 4px solid #545FE5
+}
+
+.card:hover {
+  box-shadow: 2px 4px 10px 4px gray;
 }
 
 /* switch */

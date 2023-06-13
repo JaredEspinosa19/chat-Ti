@@ -1,9 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone, faPaperPlane, faVolumeHigh,faMessage } from '@fortawesome/free-solid-svg-icons';
-import { useAudioRecorder, useChatStore, useForm } from '../hooks';
+import { useChatStore, useForm } from '../hooks';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-
-
 
 const InitialForm = {
   message: '',
@@ -13,7 +11,6 @@ const InitialForm = {
 export const Prompt = () => {
   
   const {message, isText, onResetForm, onInputChange} = useForm(InitialForm);
-  // const {isCompatible, listening, transcript, startListening, stopListening} = useAudioRecorder();
   const startListening = () => SpeechRecognition.startListening({continuous: true, language: 'es-MX'});
   const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition: isCompatible } = useSpeechRecognition();
   const {sendTextToText, isSending, sendTextToAudio} = useChatStore();
@@ -28,7 +25,6 @@ export const Prompt = () => {
     else { //text-audio
       sendTextToAudio({message});
     }
-    
     onResetForm();
   }
 
@@ -61,7 +57,7 @@ export const Prompt = () => {
                 className="col-3  position-relative"
                 style={{height: '5rem'}}>
                 <div className='position-absolute top-50 start-50 translate-middle p-4'>
-                  
+                    
                   <label className="switch">
                     <input 
                       type="checkbox"
@@ -94,7 +90,6 @@ export const Prompt = () => {
 
               <div 
                 className="col-6 position-relative">
-                
                 <textarea
                   className='position-absolute top-50 start-50 translate-middle w-100
                   shadow-sm pt-2 pb-2 ps-3 bg-body-tertiary rounded-4 text-area'
@@ -107,40 +102,41 @@ export const Prompt = () => {
                   onChange={onInputChange}
                   disabled={isSending || listening}
                   ></textarea>
-
               </div>
             
-              <div 
-                className="col-1 position-relative">
-                <button
-                  className='position-absolute top-50 start-50 translate-middle btn'
-                  style={{border: 'none', background: 'transparent'}}
-                  onClick={onStartRecording}
-                  disabled={!isCompatible || isSending}>
-                  <FontAwesomeIcon icon={faMicrophone}  
-                    style={{color: "rgb(255, 214, 10)", height: '2rem'}}
-                    beatFade={listening}
-                    />
-                </button>
-                {/* {
-                  listening === 
-                  ? ()
-                  : ()
-                } */}
-              </div>
 
-              <div
-                className="col-2  position-relative">
+            <div className='col-3'>
+              <div 
+                className='row w-auto'
+                style={{height: '100%'}}>
+                <div 
+                  className="col-6 position-relative ">
                   <button
                     className='position-absolute top-50 start-50 translate-middle btn'
-                    style={{height: '50%', width: 'auto', border: 'none', background: 'transparent'}}
-                    onClick={onSubmit}
-                    disabled={isSending || listening}
-                    >
-                    <FontAwesomeIcon icon={faPaperPlane} 
-                      style={{color: "rgb(255, 214, 10)", height: '1.8rem', }}/>
+                    style={{border: 'none', background: 'transparent'}}
+                    onClick={onStartRecording}
+                    disabled={!isCompatible || isSending}>
+                    <FontAwesomeIcon icon={faMicrophone}  
+                      style={{color: "rgb(255, 214, 10)", height: '2rem'}}
+                      beatFade={listening}
+                      />
                   </button>
+                </div>
+
+                  <div
+                    className="col-6 position-relative">
+                      <button
+                        className='position-absolute top-50 start-50 translate-middle btn'
+                        style={{height: '50%', width: 'auto', border: 'none', background: 'transparent'}}
+                        onClick={onSubmit}
+                        disabled={isSending || listening}
+                        >
+                        <FontAwesomeIcon icon={faPaperPlane} 
+                          style={{color: "rgb(255, 214, 10)", height: '1.8rem', }}/>
+                      </button>
+                  </div>
               </div>
+            </div>
 
             </form>
         </div>
